@@ -10,17 +10,24 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
+
+import os
+from dotenv import load_dotenv
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
+load_dotenv()  # take environment variables from .env.
+
+# Code of your application, which uses environment variables (e.g. from `os.environ` or
+# `os.getenv`) as if they came from the actual environment.
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-wf=fa0$=cn(j*ssz^f9t562qofu)-^bd0=99i70h9n*n^vvpcu'
+SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -78,10 +85,10 @@ WSGI_APPLICATION = 'project.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'neondb',
-        'USER': 'alialrubay199',
-        'PASSWORD': 'SuUYLPX3xD1Q',
-        'HOST': 'ep-crimson-frost-45101473.eu-central-1.aws.neon.tech',
+        'NAME':  os.environ.get('NAME'),
+        'USER':  os.environ.get('USER'),
+        'PASSWORD':  os.environ.get('PASSWORD'),
+        'HOST':  os.environ.get('HOST'),
         'PORT': '5432',
     }
 }
