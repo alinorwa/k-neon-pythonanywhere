@@ -1,0 +1,33 @@
+{% extends 'base.html' %} {% block body%}
+
+<h1 class="text-center mt-2 mb-3">all Post</h1>
+
+<div class="row">
+  {% for post in posts %}
+
+  <div class="col-md-4">
+    <div class="card">
+      {% if post.image %}
+      <img
+        src="{{ post.image.url }}"
+        class="card-img-top"
+        alt="..."
+        style="height: 300px; width: 300px"
+      />
+      {% else %}
+      <h1>there is no images yet!</h1>
+      {% endif %}
+      <div class="card-body">
+        <h5 class="card-title">{{post.title}}</h5>
+        <p class="card-text">{{post.body}}.</p>
+        <a href="{% url 'post_details' post.id %}" class="btn btn-primary"
+          >Go detail</a
+        >
+      </div>
+    </div>
+  </div>
+
+  {% endfor %}
+</div>
+
+{% endblock %}
